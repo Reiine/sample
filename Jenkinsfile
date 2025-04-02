@@ -22,7 +22,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                powershell 'chmod +x deploy.sh && ./deploy.sh'
+                powershell 'chmod +x deploy.sh -and ./deploy.sh'
             }
         }
     }
