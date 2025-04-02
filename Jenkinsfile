@@ -22,7 +22,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                bat 'C:\\Program Files\\Git\\bin\\bash.exe -c "chmod +x deploy.sh && ./deploy.sh"'
+                bat bat '"C:\\Program Files\\Git\\bin\\bash.exe" -c "chmod +x deploy.sh && ./deploy.sh"'
             }
         }
     }
