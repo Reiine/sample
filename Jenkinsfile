@@ -10,13 +10,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                powershell 'javac javafile.java'
+                powershell 'javac Main.java'
             }
         }
 
         stage('Test') {
             steps {
-                powershell 'java javafile'
+                powershell 'java Main'
             }
         }
 
