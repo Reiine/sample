@@ -1,65 +1,30 @@
 pipeline {
     agent any
 
-    environment {
-        GIT_REPO = 'hhttps://github.com/Reiine/sample.git'
-        BRANCH = 'main'
-    }
-
     stages {
-        stage('Checkout') {
+        stage('Clone Code') {
             steps {
-                git branch: "${BRANCH}", url: "${GIT_REPO}"
+                git 'https://github.com/your-repo/java-project.git'
             }
         }
 
         stage('Build') {
             steps {
-                script {
-                    if (isUnix()) {
-                        sh 'mvn clean install'
-                    } else {
-                        bat 'mvn clean install'
-                    }
-                }
+                sh 'javac Main.java'
             }
         }
 
         stage('Test') {
             steps {
-                script {
-                    if (isUnix()) {
-                        sh 'mvn test'
-                    } else {
-                        bat 'mvn test'
-                    }
-                }
+                sh 'java -cp . org.junit.runner.JUnitCore TestMain'
             }
         }
 
-        stage('Package') {
+        stage('Deploy') {
             steps {
-                script {
-                    if (isUnix()) {
-                        sh 'mvn package'
-                    } else {
-                        bat 'mvn package'
-                    }
-                }
+                echo "Deploying application..."
+                sh 'mv Main.class /path/to/server/'
             }
-        }
-    }
-
-    post {
-        always {
-            archiveArtifacts artifacts: '**/target/*.jar', allowEmptyArchive: true
-            junit '**/target/surefire-reports/*.xml'
-        }
-        success {
-            echo 'Build succeeded!'
-        }
-        failure {
-            echo 'Build failed!'
         }
     }
 }
