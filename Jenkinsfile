@@ -10,19 +10,19 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'javac javafile.java'
+                powershell 'javac javafile.java'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'java -cp . org.junit.runner.JUnitCore TestMain'
+                powershell 'java -cp . org.junit.runner.JUnitCore TestMain'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh 'chmod +x deploy.sh && ./deploy.sh'
+                powershell 'chmod +x deploy.sh && ./deploy.sh'
             }
         }
     }
