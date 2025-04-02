@@ -16,7 +16,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                powershell 'java javafile.java'
+                powershell 'java javafile'
             }
         }
 
