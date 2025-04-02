@@ -22,7 +22,10 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                powershell 'chmod +x deploy.sh -and ./deploy.sh'
+                powershell '''
+                Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
+                Start-Process -FilePath "deploy.sh" -NoNewWindow -Wait
+                '''
             }
         }
     }
