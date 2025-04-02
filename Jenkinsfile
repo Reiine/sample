@@ -22,10 +22,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                powershell '''
-                Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope Process
-                Start-Process -FilePath "deploy.sh" -NoNewWindow -Wait
-                '''
+                bat 'C:\\Program Files\\Git\\bin\\bash.exe -c "chmod +x deploy.sh && ./deploy.sh"'
             }
         }
     }
