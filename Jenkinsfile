@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Clone Code') {
             steps {
-                git 'https://github.com/your-repo/java-project.git'
+                git 'https://github.com/Reiine/sample.git'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'javac Main.java'
+                sh 'javac javafile.java'
             }
         }
 
@@ -22,8 +22,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo "Deploying application..."
-                sh 'mv Main.class /path/to/server/'
+                sh 'chmod +x deploy.sh && ./deploy.sh'
             }
         }
     }
