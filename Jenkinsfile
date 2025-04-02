@@ -16,7 +16,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                powershell 'java -cp . org.junit.runner.JUnitCore javafile'
+                powershell 'java javafile.java'
             }
         }
 
