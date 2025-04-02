@@ -10,7 +10,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                powershell 'javac javafile.java'
+                sh 'cd sample'
+                sh 'javac javafile.java'
             }
         }
 
