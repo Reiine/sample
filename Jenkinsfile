@@ -8,13 +8,16 @@ pipeline {
             }
         }
 
-        stage('Display HTML File') {
+        stage('Publish HTML') {
             steps {
-                script {
-                    def htmlContent = readFile 'index.html'
-                    echo "===== HTML Output ====="
-                    echo htmlContent
-                }
+                publishHTML(target: [
+                    reportName : 'Rendered HTML Page',
+                    reportDir  : '.',
+                    reportFiles: 'index.html',
+                    keepAll    : true,
+                    alwaysLinkToLastBuild: true,
+                    allowMissing: false
+                ])
             }
         }
     }
