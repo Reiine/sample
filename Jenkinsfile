@@ -2,27 +2,21 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Code') {
+        stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/Reiine/sample.git'
+                git 'https://github.com/your-repo/html-demo.git'
+
             }
         }
 
-        stage('Build') {
+        stage('Display HTML Content') {
             steps {
-                powershell 'javac Main.java'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                powershell 'java Main'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                bat '"C:\\Program Files\\Git\\bin\\bash.exe" -c "chmod +x deploy.sh && ./deploy.sh"'
+                script {
+                    def htmlContent = readFile('index.html')
+                    echo '--- HTML File Content Start ---'
+                    echo htmlContent
+                    echo '--- HTML File Content End ---'
+                }
             }
         }
     }
