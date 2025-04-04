@@ -2,20 +2,18 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout Code') {
+        stage('Clone Repository') {
             steps {
-                git 'https://github.com/Reiine/sample.git'
-
+                git branch: "main", url: 'https://github.com/Reiine/sample.git'
             }
         }
 
-        stage('Display HTML Content') {
+        stage('Display HTML File') {
             steps {
                 script {
-                    def htmlContent = readFile('index.html')
-                    echo '--- HTML File Content Start ---'
+                    def htmlContent = readFile 'index.html'
+                    echo "===== HTML Output ====="
                     echo htmlContent
-                    echo '--- HTML File Content End ---'
                 }
             }
         }
