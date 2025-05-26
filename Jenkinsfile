@@ -8,12 +8,12 @@ pipeline{
     }
     stage("Build"){
       steps{
-        powershell javac Main.java
+        powershell 'javac Main.java'
       }
     }
     stage("Run"){
       steps{
-        powershell java Main
+        powershell 'java Main'
       }
     }
     stage("Deploy"){
