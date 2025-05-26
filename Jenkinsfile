@@ -6,15 +6,17 @@ pipeline{
         git branch: 'main', url:'https://github.com/Reiine/sample.git'
       }
     }
-    stage("Build"){
-      steps{
-        powershell 'javac Main.java'
-      }
-    }
-    stage("Run"){
-      steps{
-        powershell 'java Main'
-      }
+    stage("Publish){
+          steps{
+            publishHTML(target:[
+              'reportName': 'Rendered HTML page',
+              'reportDir' : '.',
+              'reportFile': 'index.html',
+              'keepAll':true,
+              allowMissing: false,
+              alwaysLinkToLastBuild: true
+            ])
+          }
     }
   }
 }
