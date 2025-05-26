@@ -6,7 +6,7 @@ pipeline{
         git branch: 'main', url:'https://github.com/Reiine/sample.git'
       }
     }
-    stage("Publish){
+    stage("Publish"){
           steps{
             publishHTML(target:[
               'reportName': 'Rendered HTML page',
@@ -17,6 +17,7 @@ pipeline{
               alwaysLinkToLastBuild: true
             ])
           }
+      }
     }
   }
 }
