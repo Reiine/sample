@@ -17,7 +17,6 @@ pipeline{
               alwaysLinkToLastBuild: true
             ])
           }
-      }
     }
   }
 }
