@@ -16,10 +16,5 @@ pipeline{
         powershell 'java Main'
       }
     }
-    stage("Deploy"){
-      steps{
-        bat '"C:\\Program Files\\Git\\bin\\bash.exe" -c "chmod +x deploy.sh && ./deploy.sh"'
-      }
-    }
   }
 }
